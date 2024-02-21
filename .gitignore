@@ -4,3 +4,7 @@
 
 *.jar
 *.war
+*.idea
+*.metadata
+*.DS_Store
+target/*

@@ -7,4 +7,6 @@ import com.retailer.ordereditems.persistence.entity.OrderedItems;
 public interface OrderedItemsService {
 
 	List<OrderedItems> saveAllOrderedItems(List<OrderedItems> orderedItemsList);
+	
+	List<OrderedItems> getOrderedItemsByOrderId(int orderId);
 }

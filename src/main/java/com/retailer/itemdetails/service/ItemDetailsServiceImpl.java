@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.retailer.exception.ItemDetailsNotFoundException;
+import com.retailer.exception.UserException;
 import com.retailer.itemdetails.persistence.ItemDetailsRepository;
 import com.retailer.itemdetails.persistence.entity.ItemDetails;
 
@@ -34,7 +35,11 @@ public class ItemDetailsServiceImpl implements ItemDetailsService{
 	}
 
 	@Override
-	public ItemDetails saveItemDetails(ItemDetails itemDetails) {
+	public ItemDetails saveItemDetails(ItemDetails itemDetails) throws UserException{
+		Optional<ItemDetails> optionalItemDetails = itemDetailsRepository.getItemDetailsByItemName(itemDetails.getItemName());
+		if(optionalItemDetails.isPresent()) {
+			throw new UserException("Item Name already exists");
+		}
 		return itemDetailsRepository.save(itemDetails);
 	}
 	

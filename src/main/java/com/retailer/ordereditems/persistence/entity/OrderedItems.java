@@ -1,51 +1,106 @@
 package com.retailer.ordereditems.persistence.entity;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Data;
 
-@Data
 @Entity
-@Table(name = "OrderedItems", schema = "SYSTEM")
+@Table(name = "ORDEREDITEMS")
 public class OrderedItems {
 
 	@Id
-	@Column(name = "Ordered_Items_Id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ORDERED_ITEMS_ID")
 	private Integer orderedItemsId;
 	
-	@Column(name = "Order_Id")
+	@Column(name = "ORDER_ID")
 	private Integer orderId;
 	
-	@Column(name = "Item_Id")
+	@Column(name = "ITEM_ID")
 	private Integer itemId;
 	
-	@Column(name = "Quantity")
+	@Column(name = "QUANTITY")
 	private Integer quantity;
 	
-	@Column(name = "Order_Date")
-	private LocalDateTime orderDate;
-	
-	@Column(name = "Amount")
-	private BigDecimal amount;
-	
-	@Column(name = "Reward_Points")
-	private Integer rewardPoints;
-	
-	@Column(name = "CreatedBy")
+	@Column(name = "CREATED_BY")
 	private String createdBy;
 	
-	@Column(name = "CreatedDate")
+	@Column(name = "CREATED_DATE")
 	private LocalDateTime createdDate;
 	
-	@Column(name = "UpdatedBy")
+	@Column(name = "UPDATED_BY")
 	private String updatedBy;
 	
-	@Column(name = "UpdatedDate")
+	@Column(name = "UPDATED_DATE")
 	private LocalDateTime updatedDate;
+
+	public Integer getOrderedItemsId() {
+		return orderedItemsId;
+	}
+
+	public void setOrderedItemsId(Integer orderedItemsId) {
+		this.orderedItemsId = orderedItemsId;
+	}
+
+	public Integer getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(Integer orderId) {
+		this.orderId = orderId;
+	}
+
+	public Integer getItemId() {
+		return itemId;
+	}
+
+	public void setItemId(Integer itemId) {
+		this.itemId = itemId;
+	}
+
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public LocalDateTime getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(LocalDateTime createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+
+	public LocalDateTime getUpdatedDate() {
+		return updatedDate;
+	}
+
+	public void setUpdatedDate(LocalDateTime updatedDate) {
+		this.updatedDate = updatedDate;
+	}
 	
 }

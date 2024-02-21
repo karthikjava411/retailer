@@ -22,10 +22,7 @@ public class RewardPointsCalculator {
 			}else {
 				rewardsEarned = getSingleRewardsPoint( amountInInt - MINIMUM_AMOUNT_ELIGIBLE_FOR_REWARDS );
 			}
-			 
-			
 		}
-		
 		return rewardsEarned;
 	}
 	

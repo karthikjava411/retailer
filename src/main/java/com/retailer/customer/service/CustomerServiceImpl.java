@@ -3,6 +3,7 @@ package com.retailer.customer.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.retailer.customer.persistence.CustomerRepository;
@@ -12,10 +13,11 @@ import com.retailer.exception.CustomerNotFoundException;
 @Service
 public class CustomerServiceImpl implements CustomerService{
 
+	@Autowired
 	private CustomerRepository customerRepository;
-	
-	CustomerServiceImpl(CustomerRepository customerRepository){
-		this.customerRepository = customerRepository;
+
+	CustomerServiceImpl(){
+
 	}
 	
 	public List<Customer> getAllCustomers(){

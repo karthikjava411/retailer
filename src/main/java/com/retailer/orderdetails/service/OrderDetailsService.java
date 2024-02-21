@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.retailer.exception.ItemDetailsNotFoundException;
+import com.retailer.orderdetails.model.RewardPoints;
 import com.retailer.orderdetails.persistence.entity.OrderDetails;
 
 public interface OrderDetailsService {
@@ -13,4 +14,5 @@ public interface OrderDetailsService {
 	OrderDetails saveOrderDetails(OrderDetails orderDetails);
 	List<OrderDetails> getCustomerTransactionByPeriod(int customerId, int noOfMonths);
 	Map<String, Integer> getCustomerRewardsByMonths(int customerId);
+	List<RewardPoints> getCustomerRewards(int customerId);
 }
