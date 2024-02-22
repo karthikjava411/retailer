@@ -2,7 +2,6 @@ package com.retailer.orderdetails.service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,6 +63,7 @@ public class OrderDetailsServiceImpl implements OrderDetailsService{
 		return savedOrderDetails;
 	}
 
+	//Here we are send months as a negative to repository to retrieve data for past months
 	@Override
 	public List<OrderDetails> getCustomerTransactionByPeriod(int customerId, int noOfMonths) {
 		return orderDetailsRepository.getCustomerTransactionByPeriod(customerId, -noOfMonths, DateFormatterUtil.getCurrentDateAsString());
@@ -71,12 +71,6 @@ public class OrderDetailsServiceImpl implements OrderDetailsService{
 
 	@Override
 	public Map<String, Integer> getCustomerRewardsByMonths(int customerId) {
-		//Todo
-//		Map<String, Integer> map = orderDetailsRepository.findByCustomerId(customerId).collect(Collectors.toMap(OrderDetails::getOrderDate, Function.identity(), 
-//                (orderDetails1, orderDetails2) -> {
-//                	orderDetails1.setRewardPoints(orderDetails1.getRewardPoints() + orderDetails2.getRewardPoints());
-//                    return orderDetails1;
-//                  }));
 		List<OrderDetails> orderDetailsList = orderDetailsRepository.findByCustomerId(customerId);
 		Map<String, Integer> mapRewards = new HashMap<>();
 		mapRewards.put(UtilConstants.TOTAL_MONTH_STRING, 0);
@@ -96,16 +90,8 @@ public class OrderDetailsServiceImpl implements OrderDetailsService{
 	
 	@Override
 	public List<RewardPoints> getCustomerRewards(int customerId) {
-		//Todo
-//		Map<String, Integer> map = orderDetailsRepository.findByCustomerId(customerId).collect(Collectors.toMap(OrderDetails::getOrderDate, Function.identity(), 
-//                (orderDetails1, orderDetails2) -> {
-//                	orderDetails1.setRewardPoints(orderDetails1.getRewardPoints() + orderDetails2.getRewardPoints());
-//                    return orderDetails1;
-//                  }));
-		//List<RewardPoints> rewardPointsList = new ArrayList<>();
 		List<OrderDetails> orderDetailsList = orderDetailsRepository.findByCustomerId(customerId);
 		Map<String, RewardPoints> mapRewards = new HashMap<>();
-		//mapRewards.put(UtilConstants.TOTAL_MONTH_STRING, 0);
 		int order = 1;
 		int totalRewards = 0;
 		for(OrderDetails orderDetails : orderDetailsList) {
@@ -123,11 +109,9 @@ public class OrderDetailsServiceImpl implements OrderDetailsService{
 				mapRewards.put(currentMonthAndYear, rewardPoints);
 				order++;
 				
-				//mapRewards.put(UtilConstants.TOTAL_MONTH_STRING, mapRewards.get(UtilConstants.TOTAL_MONTH_STRING)+currentRewards);
 			}else {
 				previousRewards.setRewards(previousRewards.getRewards()+currentRewards);
 				mapRewards.put(currentMonthAndYear, previousRewards);
-				//mapRewards.put(UtilConstants.TOTAL_MONTH_STRING, mapRewards.get(UtilConstants.TOTAL_MONTH_STRING) + previousRewards + currentRewards);
 			}
 			totalRewards = totalRewards + currentRewards;
 			

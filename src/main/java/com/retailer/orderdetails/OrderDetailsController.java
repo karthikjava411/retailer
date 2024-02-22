@@ -1,8 +1,12 @@
 package com.retailer.orderdetails;
 
 import java.util.List;
+
 import java.util.Map;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,8 +19,10 @@ import com.retailer.orderdetails.model.RewardPoints;
 import com.retailer.orderdetails.persistence.entity.OrderDetails;
 import com.retailer.orderdetails.service.OrderDetailsService;
 
+
 @RestController
 @RequestMapping("orderdetails")
+@CrossOrigin(origins = "*")
 public class OrderDetailsController {
 
 	private OrderDetailsService orderDetailsService;
@@ -26,27 +32,36 @@ public class OrderDetailsController {
 	}
 	
 	@GetMapping("getAllOrderDetails")
-	public  List<OrderDetails> getAllOrderDetails() {
-		return orderDetailsService.getAllOrderDetails();
+	public  ResponseEntity<List<OrderDetails>> getAllOrderDetails() {
+		List<OrderDetails> orderDetailsList= orderDetailsService.getAllOrderDetails();
+		return new ResponseEntity<List<OrderDetails>>(orderDetailsList,HttpStatus.OK);
 	}
 	
 	@GetMapping("getCustomerRewardsByMonths")
-	public  Map<String, Integer> getCustomerRewardsByMonths(@RequestParam int customerId) {
-		return orderDetailsService.getCustomerRewardsByMonths(customerId);
+	public  ResponseEntity<Map<String, Integer>> getCustomerRewardsByMonths(@RequestParam int customerId) {
+		Map<String, Integer> rewardsMap = orderDetailsService.getCustomerRewardsByMonths(customerId);
+		return new ResponseEntity<Map<String, Integer>>(rewardsMap,HttpStatus.OK);
 	}
 	
 	@GetMapping("getCustomerRewards")
-	public  List<RewardPoints> getCustomerRewards(@RequestParam int customerId) {
-		return orderDetailsService.getCustomerRewards(customerId);
+	public  ResponseEntity<List<RewardPoints>> getCustomerRewards(@RequestParam int customerId) {
+		List<RewardPoints> rewardList= orderDetailsService.getCustomerRewards(customerId);
+		return new ResponseEntity<List<RewardPoints>>(rewardList,HttpStatus.OK);
 	}
 	
 	@GetMapping("getCustomerTransactionByPeriod")
-	public  List<OrderDetails> getCustomerTransactionByPeriod(@RequestParam int customerId, @RequestParam int noOfMonths) {
-		return orderDetailsService.getCustomerTransactionByPeriod(customerId, noOfMonths);
+	public  ResponseEntity<List<OrderDetails>> getCustomerTransactionByPeriod(@RequestParam int customerId, @RequestParam int noOfMonths) {
+		List<OrderDetails> orderDetailsList= orderDetailsService.getCustomerTransactionByPeriod(customerId, noOfMonths);
+		return new ResponseEntity<List<OrderDetails>>(orderDetailsList,HttpStatus.OK);
 	}
 	
 	@PostMapping("save")
-	public OrderDetails saveOrderDetails(@RequestBody OrderDetails orderDetails) throws UserException {
-		return orderDetailsService.saveOrderDetails(orderDetails);
+	public ResponseEntity<String> saveOrderDetails(@RequestBody OrderDetails orderDetails) throws UserException {
+		try {
+			orderDetailsService.saveOrderDetails(orderDetails);
+			return new ResponseEntity<String>("Success",HttpStatus.OK);
+		}catch(Exception ex) {
+			return new ResponseEntity<String>(ex.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 }

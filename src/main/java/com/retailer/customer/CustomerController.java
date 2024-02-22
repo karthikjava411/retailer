@@ -3,6 +3,9 @@ package com.retailer.customer;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,11 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.retailer.customer.persistence.entity.Customer;
 import com.retailer.customer.service.CustomerService;
 import com.retailer.exception.CustomerNotFoundException;
-import com.retailer.exception.UserException;
 import com.retailer.util.UtilConstants;
 
 @RestController
 @RequestMapping("customer")
+@CrossOrigin(origins = "*")
 public class CustomerController {
 
 	private CustomerService customerService;
@@ -27,19 +30,27 @@ public class CustomerController {
 	}
 	
 	@GetMapping("getAllCustomers")
-	public  List<Customer> getAllCustomers() {
-		return customerService.getAllCustomers();
+	public  ResponseEntity<List<Customer>> getAllCustomers() {
+		List<Customer> customerList = customerService.getAllCustomers();
+		return new ResponseEntity<List<Customer>>(customerList,HttpStatus.OK);
 	}
 	
 	@GetMapping("customerById/{customerId}")
-	public  Customer getCustomerById(@PathVariable int customerId) throws CustomerNotFoundException {
-		return customerService.getCustomerById(customerId);
+	public  ResponseEntity<Customer> getCustomerById(@PathVariable int customerId) throws CustomerNotFoundException {
+		try {
+			Customer customer = customerService.getCustomerById(customerId);
+			return new ResponseEntity<Customer>(customer,HttpStatus.OK);
+		}catch(CustomerNotFoundException ex) {
+			return new ResponseEntity<Customer>(new Customer(),HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
 	}
 	
 	@PostMapping("save")
-	public Customer saveItemDetails(@RequestBody Customer customer) throws UserException {
+	public ResponseEntity<String> saveItemDetails(@RequestBody Customer customer) {
 		customer.setCreatedDate(LocalDateTime.now());
 		customer.setCreatedBy(UtilConstants.CURRENT_USER);
-		return customerService.saveCustomer(customer);
+		customerService.saveCustomer(customer);
+		return new ResponseEntity<String>("Success",HttpStatus.OK);
 	}
 }
