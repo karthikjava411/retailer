@@ -8,4 +8,6 @@ public class UtilConstants {
 	public static final String CURRENT_USER = "user";
 	
 	public static final Integer ALL_MONTHS_DATA = -1;
+	
+	public static final String SUCCESS_MESSAGE = "Success";
 }

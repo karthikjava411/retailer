@@ -47,10 +47,10 @@ public class CustomerController {
 	}
 	
 	@PostMapping("save")
-	public ResponseEntity<String> saveItemDetails(@RequestBody Customer customer) {
+	public ResponseEntity<String> saveCustomer(@RequestBody Customer customer) {
 		customer.setCreatedDate(LocalDateTime.now());
 		customer.setCreatedBy(UtilConstants.CURRENT_USER);
 		customerService.saveCustomer(customer);
-		return new ResponseEntity<String>("Success",HttpStatus.OK);
+		return new ResponseEntity<String>(UtilConstants.SUCCESS_MESSAGE,HttpStatus.OK);
 	}
 }
