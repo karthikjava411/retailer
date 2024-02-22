@@ -36,13 +36,14 @@ Below is the description of the project.
   -------------
   This is to store what products and how many quantities of the product were purchase during the order.
 
-  And i have attached all api endpoint's postman collections in resource.
+And i have attached all api endpoint's postman collections in resource.
 
-  Just for visualization purpose i have created a Angular UI project (https://github.com/karthikjava411/retailer-app)
-  For customer transactions -- http://localhost:4200/orderdetails
-  For customer rewardpoints -- http://localhost:4200/rewardpoints
+Just for visualization purpose i have created a small Angular UI project (https://github.com/karthikjava411/retailer-app)
+---------------------------------------------------------------------------------------------------
+For customer transactions -- http://localhost:4200/orderdetails
+For customer rewardpoints -- http://localhost:4200/rewardpoints
 
-  And attached the sql files in the resources folder.
+And attached the sql files in the resources folder.
   
   
   
