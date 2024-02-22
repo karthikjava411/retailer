@@ -33,8 +33,8 @@ public class OrderedItemsTest {
 	}
 	
 	@Test
-	@DisplayName("Test ItemDetails entity")
-	public void testItemDetails() {
+	@DisplayName("Test OrderedItems entity")
+	public void testOrderedItems() {
 		assertEquals(orderedItems.getOrderedItemsId(), 1);
 		assertEquals(orderedItems.getOrderId(), 1);
 		assertEquals(orderedItems.getItemId(), 1);

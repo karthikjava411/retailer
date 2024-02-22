@@ -18,6 +18,7 @@ import com.retailer.exception.UserException;
 import com.retailer.orderdetails.model.RewardPoints;
 import com.retailer.orderdetails.persistence.entity.OrderDetails;
 import com.retailer.orderdetails.service.OrderDetailsService;
+import com.retailer.util.UtilConstants;
 
 
 @RestController
@@ -59,7 +60,7 @@ public class OrderDetailsController {
 	public ResponseEntity<String> saveOrderDetails(@RequestBody OrderDetails orderDetails) throws UserException {
 		try {
 			orderDetailsService.saveOrderDetails(orderDetails);
-			return new ResponseEntity<String>("Success",HttpStatus.OK);
+			return new ResponseEntity<String>(UtilConstants.SUCCESS_MESSAGE,HttpStatus.OK);
 		}catch(Exception ex) {
 			return new ResponseEntity<String>(ex.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
 		}

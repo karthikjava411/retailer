@@ -15,6 +15,6 @@ public interface OrderDetailsRepository extends JpaRepository<OrderDetails, Inte
 	@Query(value="Select * from OrderDetails where Customer_Id = ?1 order by Order_Date desc", nativeQuery = true)
 	public List<OrderDetails> getCustomerTransactionByPeriod(int customerId);
 	
-	@Query(value="Select * from OrderDetails where Customer_Id = ?1 order by Order_Date asc", nativeQuery = true)
+	@Query(value="Select * from OrderDetails where Customer_Id = ?1 order by Order_Date desc", nativeQuery = true)
 	public List<OrderDetails> findByCustomerId(int customerId);
 }

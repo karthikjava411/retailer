@@ -86,7 +86,7 @@ public class OrderDetailsServiceImpl implements OrderDetailsService{
 				mapRewards.put(UtilConstants.TOTAL_MONTH_STRING, mapRewards.get(UtilConstants.TOTAL_MONTH_STRING)+currentRewards);
 			}else {
 				mapRewards.put(DateFormatterUtil.getMonthAndYearOfLocalDate(orderDetails.getOrderDate()), previousRewards + currentRewards);
-				mapRewards.put(UtilConstants.TOTAL_MONTH_STRING, mapRewards.get(UtilConstants.TOTAL_MONTH_STRING) + previousRewards + currentRewards);
+				mapRewards.put(UtilConstants.TOTAL_MONTH_STRING, mapRewards.get(UtilConstants.TOTAL_MONTH_STRING) + currentRewards);
 			}
 		}
 		return mapRewards;
