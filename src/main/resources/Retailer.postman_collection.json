@@ -1,0 +1,284 @@
+{
+	"info": {
+		"_postman_id": "d7ee36f9-0947-4097-8413-4460f6e071fc",
+		"name": "Retailer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5123863"
+	},
+	"item": [
+		{
+			"name": "customer",
+			"item": [
+				{
+					"name": "getAllCustomers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/customer/getAllCustomers",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer",
+								"getAllCustomers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customerName\" : \"Mike Bond\",\n    \"email\":\"mike.bond@retailer.com\",\n    \"phone\" : \"9000000007\",\n    \"address1\":\"100 Lake Dr\",\n    \"address2\" : \"\",\n    \"city\":\"St Louis\",\n    \"state\":\"MO\",\n    \"zipCode\":\"63132\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/customer/save",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "customerById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/customer/customerById/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer",
+								"customerById",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "itemdetails",
+			"item": [
+				{
+					"name": "getAllItemDetails",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/itemdetails/getAllItemDetails",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"itemdetails",
+								"getAllItemDetails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"itemName\":\"Laptop Bag\",\n    \"itemPrice\" : \"100\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/itemdetails/save",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"itemdetails",
+								"save"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "orderdetails",
+			"item": [
+				{
+					"name": "getAllOrderDetails",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/orderdetails/getAllOrderDetails",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"orderdetails",
+								"getAllOrderDetails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCustomerRewardsByMonths",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/orderdetails/getCustomerRewardsByMonths?customerId=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"orderdetails",
+								"getCustomerRewardsByMonths"
+							],
+							"query": [
+								{
+									"key": "customerId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCustomerRewards",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/orderdetails/getAllOrderDetails",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"orderdetails",
+								"getAllOrderDetails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCustomerTransactionByPeriod",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/orderdetails/getCustomerTransactionByPeriod?customerId=1&noOfMonths=3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"orderdetails",
+								"getCustomerTransactionByPeriod"
+							],
+							"query": [
+								{
+									"key": "customerId",
+									"value": "1"
+								},
+								{
+									"key": "noOfMonths",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customerId\" : 1,\n    \"amount\" : 10,\n    \"orderedItemsList\" :[\n        {\n            \"itemId\":4,\n            \"quantity\": 2\n        }\n\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/orderdetails/save",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"orderdetails",
+								"save"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ordereditems",
+			"item": [
+				{
+					"name": "getOrderedItemsByOrderId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/ordereditems/getOrderedItemsByOrderId/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ordereditems",
+								"getOrderedItemsByOrderId",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
