@@ -63,9 +63,13 @@ public class OrderDetailsServiceImpl implements OrderDetailsService{
 		return savedOrderDetails;
 	}
 
-	//Here we are send months as a negative to repository to retrieve data for past months
+	//Here we are send months as a negative to repository to retrieve transactions for past months
+	//And if user send -1 it will retrieve all transactions of user
 	@Override
 	public List<OrderDetails> getCustomerTransactionByPeriod(int customerId, int noOfMonths) {
+		if(UtilConstants.ALL_MONTHS_DATA.equals(noOfMonths)) {
+			return orderDetailsRepository.getCustomerTransactionByPeriod(customerId);
+		}
 		return orderDetailsRepository.getCustomerTransactionByPeriod(customerId, -noOfMonths, DateFormatterUtil.getCurrentDateAsString());
 	}
 
